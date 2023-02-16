@@ -27,11 +27,6 @@ let arrayOfTexts = [
   'WY THR TH drct GNG ll wr W ,Hvn t DRCT gng ll WR W ,S bfr nthng hd W ,S BFR VRYTHNG hd w ,DSPR f wintr th ws T ,hpe F sprng th WS T ,Drknss F SSN TH ws t ,LGHT F SSN TH ws t ,NCRDLTY F pch th ws t ,BLF F pch TH WS T ,flshnss F G TH WS t ,WSDM F g th WS T ,tms F WRST TH WS T ,TMS f BST th ws t',
 ]
 
-function wrapperFunction() {
-  elements.text.innerHTML = arrayOfMessages[counters.levelCounter]
-  addButton()
-}
-
 function createStartButton() {
   let startButton = document.createElement('button')
   if (counters.levelCounter == 3) {
@@ -127,7 +122,7 @@ function winGame() {
     timer.innerHTML = ''
     monitor = false
     clearInterval(myInterval)
-    wrapperFunction()
+    wrapper()
   } else {
     elements.div.innerHTML = arrayOfMessages[5]
     timer.innerHTML = ''
@@ -135,4 +130,9 @@ function winGame() {
   }
 }
 
-wrapperFunction()
+function wrapper() {
+  elements.text.innerHTML = arrayOfMessages[counters.levelCounter]
+  addButton()
+}
+
+wrapper()
