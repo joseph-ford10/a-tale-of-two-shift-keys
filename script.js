@@ -8,7 +8,7 @@ let keyCounter = 0
 let monitor = true
 let listen = false
 let arrayOfMessages = [
-  "Welcome! If you the click the button below, you'll be shown the opening paragraph from A Tale Of Two Cities. All you have to do is type it out within 90 seconds. Good luck!",
+  'The aim of this game is simple: type what you see. Click the button below and the text will appear. Finish typing within the time limit to complete the level.',
   "Well done! That was great! Fancy another challenge? It'll be the same text, just arranged slightly differently.",
   'Amazing! By the way, how are you with the shift key?',
   "Now that was impressive! I think you can close the window now and feel proud of what you've accomplished. On the thr hnd...",
