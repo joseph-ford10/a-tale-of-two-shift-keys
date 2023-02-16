@@ -1,18 +1,23 @@
 let text = document.getElementById('text')
-let levelCounter = 0
+let levelCounter = 5
 let keyCounter = 0
 let monitor = true
 let listen = false
 let arrayOfMessages = [
-  "Welcome to the game! If you the click the button below, you'll be shown the opening paragraph from the Dickens classic, A Tale Of Two Cities. You'll have 90 seconds to type it out. Good luck!",
-  'Well done! That was great! If you want to play the second level, just click the button below...',
-  "Amazing! This next one is going to be a lot more difficult. Think you're up for it?",
+  "Welcome! If you the click the button below, you'll be shown the opening paragraph from A Tale Of Two Cities. All you have to do is type it out within 100 seconds. Good luck!",
+  "Well done! That was great! Fancy another challenge? It'll be the same text, just arranged slightly differently.",
+  'Amazing! By the way, how are you with the shift key?',
+  "Now that was impressive! I think you can close the window now and feel proud of what you've accomplished. On the thr hnd...",
+  'You really are great at this. You have so many skills! But how are you at combining those skills...?',
+  'Congratulations! You beat all the levels and have mastered the opening paragraph of A Tale of Two Cities. Why not check out the whole book? Thanks for playing!',
   'Oh dear--not quite! Would you like to try again?',
 ]
 let arrayOfTexts = [
-  'It was the best of times, it was the worst of times',
-  'Blah blah blah blah',
-  'Bloh bloh bloh bloh',
+  'It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way--in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only.',
+  '.only comparison of degree superlative the in ,evil for or good for ,received being its on insisted authorities noisiest its of some that ,period present the like far so was period the ,short in--way other the direct going all were we ,Heaven to direct going all were we ,us before nothing had we ,us before everything had we ,despair of winter the was it ,hope of spring the was it ,Darkness of season the was it ,Light of season the was it ,incredulity of epoch the was it ,belief of epoch the was it ,foolishness of age the was it ,wisdom of age the was it ,times of worst the was it ,times of best the was It',
+  'It was THE BEST OF times, it WAS THE worst of times, it WAS THE AGE OF wisdom, IT was THE AGE OF FOOLISHNESS, IT was the epoch of BELIEF, IT WAS the EPOCH OF INCREDULITY, IT was THE season OF LIGHT, it was THE SEASON of DARKNESS, it WAS the SPRING OF HOPE, IT WAS the winter of despair, WE had everything BEFORE US, WE HAD nothing BEFORE us, we WERE all GOING DIRECT TO HEAVEN, we were all going DIRECT THE other WAY--IN short, THE PERIOD was SO far like THE PRESENT period, that SOME of its NOISIEST authorities INSISTED ON its BEING RECEIVED, for GOOD OR FOR EVIL, in the superlative DEGREE OF COMPARISON ONLY.',
+  't ws th bst of tms, t ws th wrst f tms, t ws th g f wsdm, t ws th g f flshnss, t ws th pch f blf, t ws th pch f ncrdlty, t ws th ssn f Lght, t ws th ssn f Drknss, t ws th sprng f hpe, t ws th wintr f dspr, w hd vrythng bfor s, w hd nthng bfor s, w wre ll gng drct t Hvn, w wr ll gng drct th thr wy--n shrt, th prd ws s fr lk th prsnt prd, tht sm f ts nsst thorts nsstd on ts bng rcvd, fr gd r fr vl, n th sprltv dgr f cmprsn nly.',
+  '.NLY cmprsn f DGR sprltv TH n ,VL fr R gd fr ,rcvd BNG TS ON NSSTD thorts NSST ts F sm tht ,prd prsnt th lk fr s WS prd th ,SHRT N--WY THR TH drct GNG ll wr W ,Hvn t DRCT gng ll WRE W ,S bfor nthng hd W ,S BFOR VRYTHNG hd w ,DSPR f wintr th ws T ,hpe F sprng th WS T ,Drknss F SSN TH ws t ,LGHT F SSN TH ws t ,NCRDLTY F pch th ws t ,BLF F pch TH WS T ,flshnss F G TH WS t ,WSDM F g th WS T ,tms F WRST TH WS T ,TMS of BST th ws t',
 ]
 
 function wrapperFunction() {
@@ -22,7 +27,11 @@ function wrapperFunction() {
 
 function createStartButton() {
   let startButton = document.createElement('button')
-  startButton.innerHTML = 'START GAME'
+  if (levelCounter == 3) {
+    startButton.innerHTML = 'STRT'
+  } else {
+    startButton.innerHTML = 'START'
+  }
   startButton.setAttribute('id', 'startButton')
   startButton.addEventListener('click', startRound)
   return startButton
@@ -33,10 +42,6 @@ function addButton() {
   let div = document.getElementById('myDiv')
   div.appendChild(button)
 }
-
-// function anonFunc() {
-//   keyPressed(event, textArray)
-// }
 
 function textAppear() {
   startButton.remove()
@@ -58,7 +63,7 @@ function createSpans(anArray) {
 }
 
 function startCounting() {
-  let i = 10
+  let i = 100
   let timer = document.getElementById('timer')
   countdown()
   window.myInterval = setInterval(countdown, 1000)
@@ -76,7 +81,8 @@ function startCounting() {
 
 function keyPressed(event, array) {
   if (monitor == true) {
-    if (event.key == array[keyCounter]) {
+    if (event.key === array[keyCounter]) {
+      console.log(event)
       console.log(keyCounter)
       selectedLetter = document.getElementById(`letter${keyCounter}`)
       selectedLetter.style.backgroundColor = 'lightgreen'
@@ -99,21 +105,22 @@ function startRound() {
 
 function failGame() {
   text.innerHTML = ''
-  text.innerHTML = arrayOfMessages[3]
+  text.innerHTML = arrayOfMessages[6]
   monitor = false
   addButton()
 }
 
 function winGame() {
-  if (levelCounter != 6) {
+  if (levelCounter != 5) {
     levelCounter++
     timer.innerHTML = ''
     monitor = false
     clearInterval(myInterval)
     wrapperFunction()
   } else {
-    text.innerHTML =
-      "Well done! You've beat the all the levels. Now that you've typed the opening paragraph several times, why not check out the full book?"
+    text.innerHTML = arrayOfMessages[5]
+    timer.innerHTML = ''
+    monitor = false
   }
 }
 
