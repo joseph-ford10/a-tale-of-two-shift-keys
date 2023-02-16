@@ -60,8 +60,6 @@ function textAppear() {
   startButton.remove()
   let gameText = arrayOfTexts[counters.levelCounter]
   textArray = gameText.split('')
-  console.log(textArray.length)
-  console.log(textArray)
   createSpans(textArray)
   window.addEventListener('keydown', function wrapper(event) {
     keyPressed(event, textArray)
@@ -98,12 +96,8 @@ function keyPressed(event, array) {
   if (monitor == true) {
     let selectedLetter = document.getElementById(`letter${counters.keyCounter}`)
     if (event.key === selectedLetter.innerHTML) {
-      console.log(`Array length: ${array.length}`)
-      console.log(event)
-      console.log(`Key counter: ${elements.keyCounter}`)
       selectedLetter.style.backgroundColor = 'lightgreen'
       counters.keyCounter++
-      console.log(`Key counter after increment: ${counters.keyCounter}`)
     }
     if (counters.keyCounter == array.length) {
       clearInterval(myInterval)
@@ -129,9 +123,7 @@ function failGame() {
 
 function winGame() {
   if (counters.levelCounter != 4) {
-    console.log(levelCounter)
     counters.levelCounter++
-    console.log(levelCounter)
     timer.innerHTML = ''
     monitor = false
     clearInterval(myInterval)
