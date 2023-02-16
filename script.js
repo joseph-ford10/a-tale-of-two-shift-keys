@@ -16,7 +16,7 @@ let arrayOfMessages = [
   "Now that was impressive! I think you can close the window now and feel proud of what you've accomplished. On the thr hnd...",
   'Amazing! By the way, how are you with the shift key?',
   'You really are great at this. You have so many skills! But how are you at combining those skills...?',
-  'Congratulations! You beat all the levels and have mastered the opening paragraph of A Tale of Two Cities. Why not <span><a href=https://www.gutenberg.org/ebooks/98>check out the whole book?</a></span> Thanks for playing!',
+  'Congratulations! You beat all the levels and have mastered the opening of <span style="font-style: italic">A Tale of Two Cities</span>. Why not <span><a href=https://www.gutenberg.org/ebooks/98>check out the whole book?</a></span> Thanks for playing!',
   'Oh dear--not quite! Would you like to try again?',
 ]
 let arrayOfTexts = [
