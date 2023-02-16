@@ -1,11 +1,15 @@
-let winningKeys = {}
-let text = document.getElementById('text')
+let counters = {
+  levelCounter: 0,
+  keyCounter: 0,
+}
+
+let elements = {
+  text: document.getElementById('text'),
+  div: document.getElementById('myDiv'),
+}
+
 let textArray = []
-let levelCounter = 0
-let div = document.getElementById('myDiv')
-let keyCounter = 0
 let monitor = true
-let listen = false
 let arrayOfMessages = [
   'The aim of this game is simple: type what you see. Click the button below and the text will appear. All you have to do is start typing (case matters!). Finish typing within the time limit to complete the level. Good luck!',
   "Well done! That was great! Fancy another challenge? It'll be the same text, just arranged slightly differently.",
@@ -24,13 +28,13 @@ let arrayOfTexts = [
 ]
 
 function wrapperFunction() {
-  text.innerHTML = arrayOfMessages[levelCounter]
+  elements.text.innerHTML = arrayOfMessages[counters.levelCounter]
   addButton()
 }
 
 function createStartButton() {
   let startButton = document.createElement('button')
-  if (levelCounter == 3) {
+  if (counters.levelCounter == 3) {
     startButton.innerHTML = 'STRT'
   } else {
     startButton.innerHTML = 'START'
@@ -49,13 +53,13 @@ function createStartButton() {
 
 function addButton() {
   let button = createStartButton()
-  div.appendChild(button)
+  elements.div.appendChild(button)
 }
 
 function textAppear() {
   startButton.remove()
-  let text = arrayOfTexts[levelCounter]
-  textArray = text.split('')
+  let gameText = arrayOfTexts[counters.levelCounter]
+  textArray = gameText.split('')
   console.log(textArray.length)
   console.log(textArray)
   createSpans(textArray)
@@ -69,7 +73,7 @@ function createSpans(anArray) {
     let newSpan = document.createElement('span')
     newSpan.innerHTML = anArray[i]
     newSpan.setAttribute('id', `letter${i}`)
-    text.appendChild(newSpan)
+    elements.text.appendChild(newSpan)
   }
 }
 
@@ -92,16 +96,16 @@ function startCounting() {
 
 function keyPressed(event, array) {
   if (monitor == true) {
-    let selectedLetter = document.getElementById(`letter${keyCounter}`)
+    let selectedLetter = document.getElementById(`letter${counters.keyCounter}`)
     if (event.key === selectedLetter.innerHTML) {
       console.log(`Array length: ${array.length}`)
       console.log(event)
-      console.log(`Key counter: ${keyCounter}`)
+      console.log(`Key counter: ${elements.keyCounter}`)
       selectedLetter.style.backgroundColor = 'lightgreen'
-      keyCounter++
-      console.log(`Key counter after increment: ${keyCounter}`)
+      counters.keyCounter++
+      console.log(`Key counter after increment: ${counters.keyCounter}`)
     }
-    if (keyCounter == array.length) {
+    if (counters.keyCounter == array.length) {
       clearInterval(myInterval)
       winGame()
     }
@@ -109,31 +113,31 @@ function keyPressed(event, array) {
 }
 
 function startRound() {
-  text.innerHTML = ''
-  keyCounter = 0
+  elements.text.innerHTML = ''
+  counters.keyCounter = 0
   monitor = true
   textAppear()
   startCounting()
 }
 
 function failGame() {
-  text.innerHTML = ''
-  text.innerHTML = arrayOfMessages[6]
+  elements.text.innerHTML = ''
+  elements.text.innerHTML = arrayOfMessages[6]
   monitor = false
   addButton()
 }
 
 function winGame() {
-  if (levelCounter != 4) {
+  if (counters.levelCounter != 4) {
     console.log(levelCounter)
-    levelCounter++
+    counters.levelCounter++
     console.log(levelCounter)
     timer.innerHTML = ''
     monitor = false
     clearInterval(myInterval)
     wrapperFunction()
   } else {
-    div.innerHTML = arrayOfMessages[5]
+    elements.div.innerHTML = arrayOfMessages[5]
     timer.innerHTML = ''
     monitor = false
   }
