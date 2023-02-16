@@ -1,5 +1,6 @@
 let text = document.getElementById('text')
 let levelCounter = 5
+let div = document.getElementById('myDiv')
 let keyCounter = 0
 let monitor = true
 let listen = false
@@ -9,7 +10,7 @@ let arrayOfMessages = [
   'Amazing! By the way, how are you with the shift key?',
   "Now that was impressive! I think you can close the window now and feel proud of what you've accomplished. On the thr hnd...",
   'You really are great at this. You have so many skills! But how are you at combining those skills...?',
-  'Congratulations! You beat all the levels and have mastered the opening paragraph of A Tale of Two Cities. Why not check out the whole book? Thanks for playing!',
+  'Congratulations! You beat all the levels and have mastered the opening paragraph of A Tale of Two Cities. Why not <span><a href=https://www.gutenberg.org/ebooks/98>check out the whole book?</a></span> Thanks for playing!',
   'Oh dear--not quite! Would you like to try again?',
 ]
 let arrayOfTexts = [
@@ -39,7 +40,6 @@ function createStartButton() {
 
 function addButton() {
   let button = createStartButton()
-  let div = document.getElementById('myDiv')
   div.appendChild(button)
 }
 
@@ -111,15 +111,14 @@ function failGame() {
 }
 
 function winGame() {
-  if (levelCounter != 5) {
+  if (levelCounter != 4) {
     levelCounter++
     timer.innerHTML = ''
     monitor = false
     clearInterval(myInterval)
     wrapperFunction()
   } else {
-    text.innerHTML = arrayOfMessages[5]
-    timer.innerHTML = ''
+    div.innerHTML = arrayOfMessages[5]
     monitor = false
   }
 }
