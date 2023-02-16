@@ -38,7 +38,13 @@ function createStartButton() {
   }
   startButton.setAttribute('id', 'startButton')
   startButton.addEventListener('click', startRound)
-  startButton.setAttribute('class', 'background-grey')
+  startButton.style.marginTop = '55px'
+  startButton.style.padding = '20px 50px'
+  startButton.style.fontWeight = 'bold'
+  startButton.style.backgroundColor = 'white'
+  startButton.style.borderWidth = '3px'
+  startButton.style.borderColor = 'black'
+  startButton.style.borderRadius = '25px'
   return startButton
 }
 
